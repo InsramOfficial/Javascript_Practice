@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz-Game</title>
+
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background-color: #001e4d;
+        }
+
+        .app {
+
+            background: white;
+            width: 90%;
+            margin: 100px auto 0;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 550px;
+            text-align: center;
+        }
+
+        .app h1 {
+            font-size: 25px;
+            color: #001e4d;
+            font-weight: 600;
+            border-bottom: 1px solid #333;
+            padding-bottom: 30px;
+        }
+
+        .quiz {
+            padding: 20px;
+        }
+
+        .btn {
+            background: white;
+            margin: 20px auto 0;
+            padding: 10px;
+            font-weight: 600;
+            border-radius: 4px;
+            width: 100%;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .btn:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        #next-button {
+            background: #001e4d;
+            margin: 10px auto 0;
+            border: 0;
+            border-radius: 4px;
+            font-weight: 600;
+            padding: 10px;
+            width: 30%;
+            color: white;
+            cursor: pointer;
+            display: none;
+
+        }
+
+        #next-button:hover {
+            color: black;
+            background-color: antiquewhite;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Simple QUiz</h2>
+            <div class="quiz">
+                <h2 id="question">Quesation Goes Here</h2>
+                <div id="answer-button">
+
+                </div>
+                <button id="next-button"> Next</button>
+            </div>
+    </div>
+
+
+
+    <script>
+        const question = [
+            {
+                question: "What is the First Month Of The Year Name",
+                answers: [
+                    { text: "Jan", correct: true },
+                    { text: "Feb", correct: false },
+                    { text: "Mar", correct: false },
+                    { text: "Apr", correct: false }
+
+                ]
+            },
+            {
+                question: "Mera Name kia hai ",
+                answers: [
+                    { text: "insram", correct: true },
+                    { text: "Isnram", correct: false },
+                    { text: "Misanrar", correct: false },
+                    { text: "aknrksjf", correct: false }
+
+                ]
+            },
+            {
+                question: "What is the First Month Of The Year Name",
+                answers: [
+                    { text: "Jan", correct: true },
+                    { text: "Feb", correct: false },
+                    { text: "Mar", correct: false },
+                    { text: "Apr", correct: false }
+
+                ]
+            },
+            {
+                question: "What is the First Month Of The Year Name",
+                answers: [
+                    { text: "Jan", correct: true },
+                    { text: "Feb", correct: false },
+                    { text: "Mar", correct: false },
+                    { text: "Apr", correct: false }
+
+                ]
+            },
+        ];
+
+        let questionElement = document.getElementById("question");
+        let answerbutton = document.getElementById("answer-button");
+        let nextbutton = document.getElementById("next-button");
+        let index = 0;
+        let score = 0;
+
+        function startquiz() {
+            let index = 0;
+            let score = 0;
+            nextbutton.innerHTML = "Next";
+            showQuesation();
+
+        }
+
+        function showQuesation() {
+           reststate();
+            let currentQuesation = question[index];
+            questionElement.innerHTML = currentQuesation.question;
+
+            currentQuesation.answers.forEach(answers => {
+                const button = document.createElement("button");
+                button.innerHTML = answers.text;
+                button.classList.add("btn");
+                button.addEventListener("click", () => eventhandler(answers.correct));
+                answerbutton.appendChild(button);
+            });
+        }
+        function eventhandler(isCorrect) {
+            if (isCorrect) {
+                score++;
+            }
+
+            index++;
+            if (index < question.length) {
+                showQuesation();
+            } else {
+                alert("Quiz Completed! Your Score: " + score);
+            }
+
+        }
+
+        function reststate() {
+            nextbutton.style.display = "none";
+            while (answerbutton.firstChild) {
+                answerbutton.removeChild(answerbutton.firstChild);
+            }
+        }
+        startquiz();
+    </script>
+</body>
+
+</html>

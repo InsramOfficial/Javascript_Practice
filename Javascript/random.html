@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randon Password Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #002339;
+            color: white;
+            max-height: 500vh;
+        }
+
+        .container {
+            margin: 11%;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .container h1 {
+            font-size: 40px;
+            font-weight: 600;
+        }
+
+        .container h1 span {
+            color: #019f55;
+            border-bottom: 4px solid green;
+        }
+
+        .display {
+            width: 100%;
+            margin-bottom: 30px;
+            color: #333;
+            width: 100%;
+            margin-top: 50px;
+            background: white;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 26px;
+            border-radius: 5px;
+
+        }
+        .display input {
+            border: 0;
+            font-size: 24px;
+            outline: 0;
+            width :90%
+        }
+
+        .display img {
+            width: 30px;
+            cursor: pointer;
+            align-items: center;
+        }
+
+        .container button{
+            background:white;
+            display: flex;
+            color: black;
+            font-size: 22px;
+            border: 0;
+            outline: 0;
+            padding: 20px 26px;
+            border-radius: 4px;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+                }
+
+            .container button:hover{
+                background-color: rgb(68, 68, 84);
+                color: white;
+                transition: all 0.2s;
+            }
+            .container button:active{
+              transform: scale(0.98); 
+                /* Scaling button to 0.98 to its original size */ 
+                box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+                /* Lowering the shadow */ 
+            }
+                
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate a <br><span>Random Password</span></h1>
+        <div class="display">
+            <input type="text"  id="Password" placeholder="Password">
+            <img src="png-transparent-clipboard-copy-duplicate-paste-sheet-icon.png" onclick="copy()">
+        </div>
+        <button id="Button" onclick="createpassword()">Generate</button>
+    </div>
+    <script>
+        let PasswordBox=document.getElementById("Password");
+        const uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowercase="abcdefghijklmnopqrstuvwxyz";
+        const length=12;
+        const number="0123456789";
+        const symbol="!@#$%^&*()";
+       const  allchar= lowercase + uppercase + number + symbol;
+
+        function createpassword(){
+            let Password="";
+            Password+=uppercase[Math.floor(Math.random() * uppercase.length)];
+            Password+=lowercase[Math.floor(Math.random() * lowercase.length)];
+            Password+=number[Math.floor(Math.random() * number.length)];
+            Password+=symbol[Math.floor(Math.random() * symbol.length)];
+            while(length>Password.length)
+            {
+              Password+= allchar[Math.floor(Math.random() * allchar.length)];
+            }
+
+            PasswordBox.value=Password;
+        }
+    // function copy(){
+    //     PasswordBox.select();
+    //     document.execCommand("copy");
+    // }
+     
+    </script>
+</body>
+
+</html>

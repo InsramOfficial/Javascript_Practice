@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background: #001e4d;
+        }
+
+        .app {
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            margin: 100px auto 0;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .app h1 {
+            font-size: 25px;
+            color: #001e4d;
+            font-weight: 600;
+            border-bottom: 1px solid #333;
+            padding-bottom: 30px;
+
+        }
+
+        .quiz {
+            padding: 20px 0;
+        }
+
+        .quiz h2 {
+            font-weight: 25px;
+            color: #001e4d;
+            font-weight: 25px;
+        }
+
+
+        .btn {
+            background: #fff;
+            color: #222;
+            font-weight: 500;
+            width: 100%;
+            border: 1px solid #222;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: left;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #222;
+            color: #fff
+        }
+
+        #next-button {
+            background: #001e4d;
+            color: white;
+            font-weight: 500;
+            width: 90px;
+            border: 0;
+            padding: 10px;
+            margin: 20px auto 0;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="app">
+        <h1>Simple Quiz</h1>
+        <div class="quiz">
+            <h2 id="quesation">
+                quesation Goes here
+            </h2>
+            <div id="answer-buttons">
+
+            </div>
+            <button id="next-button">Next</button>
+        </div>
+
+    </div>
+
+
+    <script>
+        const quesation = [
+            {
+                quesation: "Which is the largest animal in the world",
+                answers: [
+                    { text: "shark", correct: false },
+                    { text: "Blue whale", correct: true },
+                    { text: "Elephant", correct: false },
+                    { text: "Giraffe", correct: false }
+                ]
+            },
+            {
+                question: "What is the capital of France?",
+                answers: [
+                    { text: "Paris", correct: true },
+                    { text: "Berlin", correct: false },
+                    { text: "Madrid", correct: false },
+                    { text: "Rome", correct: false }
+                ]
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                answers: [
+                    { text: "Venus", correct: false },
+                    { text: "Mars", correct: true },
+                    { text: "Jupiter", correct: false },
+                    { text: "Saturn", correct: false }
+                ]
+            },
+            {
+                question: "What is the largest mammal on Earth?",
+                answers: [
+                    { text: "Elephant", correct: false },
+                    { text: "Blue whale", correct: true },
+                    { text: "Giraffe", correct: false },
+                    { text: "Dolphin", correct: false }
+                ]
+            }
+        ];
+
+        const quesationElement = document.getElementById("quesation");
+        const answerButton = document.getElementById("answer-buttons");
+        const nextbutton = document.getElementById("next-button");
+        let currentQuesationIndex = 0;
+        let score = 0;
+
+
+        function startQuiz() {
+            currentQuesationIndex = 0;
+            score = 0;
+            nextbutton.innerHTML = "NEXT";
+            showQuesation();
+
+        }
+
+        function showQuesation() {
+            resetstate();
+            let currentQuesation = quesation[currentQuesationIndex];
+            quesationElement.innerHTML = currentQuesation.quesation;
+
+            currentQuesation.answers.forEach(answers => {
+                const button = document.createElement("button");
+                button.innerHTML = answers.text;
+                button.classList.add("btn");
+                button.addEventListener("click", () => handleAnswer(answers.correct));
+                answerButton.appendChild(button);
+            });
+        }
+        function handleAnswer(isCorrect) {
+            if (isCorrect) {
+                score++;
+            }
+
+            currentQuesationIndex++;
+
+            if (currentQuesationIndex < quesation.length) {
+                showQuesation();
+            } else {
+                alert("Quiz Completed! Your Score: " + score);
+            }
+            
+        }
+
+        function resetstate() {
+            nextbutton.style.display = "none";
+            while (answerButton.firstChild) {
+                answerButton.removeChild(answerButton.firstChild);
+            }
+        }
+        startQuiz();
+    </script>
+</body>
+
+
+</html>

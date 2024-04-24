@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup </title>
+
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background: #3c5077;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 20px 26px;
+            font-weight: 600;
+            font-size: 20px;
+            background: brown;
+            border: 0;
+            outline: none;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+
+        .btn:hover {
+            background: navy;
+            color: white;
+        }
+
+        .popup {
+            background: white;
+            border-radius: 6px;
+            width: 400px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            visibility: hidden;
+            transition: transform 0.4s , top 0.4s;
+        }
+
+        .popup svg {
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, alpha);
+        }
+
+        .popup p {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+
+        .popup button {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: black;
+            color: white;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, alpha);
+
+        }
+
+        .popup button:hover {
+            background: #6fd469;
+        }
+        .openpopup {
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button type="submit" class="btn" onclick="openpopup()">Submit</button>
+        <div class="popup" id="popup">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+            </svg>
+            <h2><b>Thank You!</b></h2>
+            <p>Your details has been successfully submitted .Thansk!</p>
+            <button type="button" onclick="closepopup()">OK</button>
+        </div>
+    </div>
+
+
+    <script>
+        let popup =document.getElementById("popup");
+
+        function openpopup() {
+            popup.classList.add("openpopup");
+
+        }
+        function closepopup() {
+            popup.classList.remove("openpopup");
+            
+        }
+    </script>
+</body>
+
+</html>
